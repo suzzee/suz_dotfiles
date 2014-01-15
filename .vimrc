@@ -45,7 +45,7 @@
   " files
   Bundle 'corntrace/bufexplorer'
   Bundle 'scrooloose/nerdtree'
-  " Bundle 'kien/ctrlp'
+  Bundle 'kien/ctrlp.vim'
 
   " colors
   Bundle 'flazz/vim-colorschemes'
