@@ -66,6 +66,7 @@
 
   if &t_Co >= 2 || has("gui_running")
     syntax on
+    colorscheme molokai
     set background&
   endif
   if &t_Co >= 256 || has("gui_running")
