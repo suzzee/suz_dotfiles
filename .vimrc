@@ -1,58 +1,58 @@
 " Head
 " =============================================================================
-  set nocompatible                      " why is this not the default?
-  filetype off
+  set nocompatible                      " required
+  filetype off                          " required
 
 " Packages
 " =============================================================================
-  set rtp+=~/.vim/bundle/vundle/
-  call vundle#rc()
+  set rtp+=~/.vim/bundle/Vundle.vim/
+  call vundle#begin()
 
-  Bundle 'gmarik/vundle'
+  Plugin 'gmarik/Vundle.vim'
 
-  Bundle 'tpope/vim-endwise'
-  Bundle 'tpope/vim-git'
-  Bundle 'tpope/vim-fugitive'
-  Bundle 'tpope/vim-repeat'
-  Bundle 'tpope/vim-surround'
-  Bundle 'tpope/vim-unimpaired'
-  Bundle 'tpope/vim-abolish'
-  Bundle 'tpope/vim-eunuch'
-  Bundle 'tpope/vim-commentary'
+  Plugin 'tpope/vim-endwise'
+  Plugin 'tpope/vim-git'
+  Plugin 'tpope/vim-fugitive'
+  Plugin 'tpope/vim-repeat'
+  Plugin 'tpope/vim-surround'
+  Plugin 'tpope/vim-unimpaired'
+  Plugin 'tpope/vim-abolish'
+  Plugin 'tpope/vim-eunuch'
+  Plugin 'tpope/vim-commentary'
 
-  Bundle 'ervandew/supertab'
-  Bundle 'michaeljsmith/vim-indent-object'
-  Bundle 'Townk/vim-autoclose'
-  Bundle 'vim-scripts/AutoComplPop'
-  " Bundle 'troydm/easytree.vim'
+  Plugin 'ervandew/supertab'
+  Plugin 'michaeljsmith/vim-indent-object'
+  Plugin 'Townk/vim-autoclose'
+  " Plugin 'vim-scripts/AutoComplPop'
 
   " css
-  Bundle 'wavded/vim-stylus'
-  Bundle 'groenewege/vim-less'
+  Plugin 'wavded/vim-stylus'
+  Plugin 'groenewege/vim-less'
   " html
-  Bundle 'tpope/vim-ragtag'
-  Bundle 'digitaltoad/vim-jade'
-  Bundle 'juvenn/mustache'
-  Bundle 'tpope/vim-markdown'
-  " Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+  Plugin 'tpope/vim-ragtag'
+  Plugin 'digitaltoad/vim-jade'
+  Plugin 'juvenn/mustache'
+  Plugin 'tpope/vim-markdown'
+
   " javascript
-  Bundle "pangloss/vim-javascript"
-  Bundle 'kchmck/vim-coffee-script'
+  Plugin 'pangloss/vim-javascript'
+  Plugin 'kchmck/vim-coffee-script'
   " ruby
-  Bundle 'tpope/vim-rake'
-  Bundle 'tpope/vim-rails'
+  Plugin 'tpope/vim-rake'
+  Plugin 'tpope/vim-rails'
 
   " files
-  Bundle 'corntrace/bufexplorer'
-  Bundle 'scrooloose/nerdtree'
-  Bundle 'kien/ctrlp.vim'
+  Plugin 'corntrace/bufexplorer'
+  Plugin 'scrooloose/nerdtree'
+  Plugin 'kien/ctrlp.vim'
 
   " colors
-  Bundle 'flazz/vim-colorschemes'
+  Plugin 'flazz/vim-colorschemes'
 
 " General
 " =============================================================================
-  filetype plugin indent on
+  call vundle#end()                     " required
+  filetype plugin indent on             " required
   set fileformats=unix,dos,mac          " line endings are still a thing?
   set modelines=0                       " avoid spell files vulnerability
   set autoread                          " auto-reload files from local changes
@@ -463,44 +463,3 @@
     endif
     return git
   endfunction
-
-  function! SyntaxStatus()
-    if exists('*SyntasticStatuslineFlag')
-      let toReturn = SyntasticStatuslineFlag()
-      let toReturn = substitute(toReturn, '[\[\]]', ' ', 'g')
-      if strlen(toReturn) > 0
-        return " ".toReturn
-      else
-        return ''
-      endif
-    else
-      return ''
-    endif
-  endfunction
-
-  let rails_statusline = 0
-
-  let stl = "%<"
-
-  let stl .= "%-.60f "
-
-  let stl .= "%{&filetype} "
-
-  let stl .= "%*"
-  let stl .= "%-.35{GitStatus()}"
-
-  let stl .= "%="
-  let stl .= "%#StatusWarning#"
-
-  let stl .= "%{&modified > 0 ? '-dirty-' : ''}"
-  let stl .= "%{&modified == 1 && &modifiable == 0 ? ' ' : ''}"
-
-  let stl .= "%{&modifiable == 0 ? '-readonly-' : ''}"
-
-  let stl .= "%{SyntaxStatus()}"
-  let stl .= "%*"
-
-  let stl .= " %c:"
-  let stl .= "%l/%L %P"
-
-  set statusline=%!stl
